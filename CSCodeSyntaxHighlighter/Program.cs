@@ -30,13 +30,13 @@ namespace CSCodeSyntaxHighlighter
                 code = reader.ReadToEnd();
             }
 
-            var logger = new HtmlLogger(args[0]);
+            var builder = new HtmlBuilder(args[0]);
             var walker = new CSSyntaxWalker();
-            walker.Analyze(code, logger);
+            walker.Analyze(code, builder);
 
             using (var writer = new StreamWriter(args[1]))
             {
-                writer.WriteLine(logger.BuildHtml());
+                writer.WriteLine(builder.BuildHtml());
             }
 
             Console.WriteLine("Finished!");

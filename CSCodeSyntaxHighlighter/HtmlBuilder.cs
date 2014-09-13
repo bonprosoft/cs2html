@@ -11,7 +11,7 @@ using System.Net;
 
 namespace CSCodeSyntaxHighlighter
 {
-    class HtmlLogger
+    class HtmlBuilder
     {
         private StringBuilder builder = null;
 
@@ -273,7 +273,7 @@ namespace CSCodeSyntaxHighlighter
 
 #endregion
 
-        public HtmlLogger(string target)
+        public HtmlBuilder(string target)
         {
             this.targetFilePath = target;
             builder = new StringBuilder();
