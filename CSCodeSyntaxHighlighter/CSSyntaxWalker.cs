@@ -30,13 +30,13 @@ namespace CSCodeSyntaxHighlighter
             }
 
             // コンパイル環境を用意
-            var comp = CSharpCompilation.Create("sample",
+            var compilation = CSharpCompilation.Create("sample",
                 syntaxTrees : new[] { tree },
                 references: new[] { new MetadataFileReference(typeof(Object).Assembly.Location) });
             // セマンティックモデル(構文木を走査してNameSyntaxなどの意味を解釈したもの)を取得
-            semanticModel = comp.GetSemanticModel(tree);
+            semanticModel = compilation.GetSemanticModel(tree);
             // 解析結果から診断を取得
-            foreach(var item in comp.GetDiagnostics())
+            foreach(var item in compilation.GetDiagnostics())
             {
                 this.builder.AppendSemanticDiagnostic(item);
             }
