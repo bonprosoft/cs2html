@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSSyntaxWalker.cs" />
-    <Compile Include="HtmlLogger.cs" />
+    <Compile Include="HtmlBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenKind.cs" />

@@ -25,6 +25,9 @@ namespace CSCodeSyntaxHighlighter
             Console.WriteLine("Input: {0}", args[0]);
             Console.WriteLine("SavePath: {0}", args[1]);
 
+            var hoge = new StreamReader(args[0]);
+            hoge.Close();
+
             using (var reader = new StreamReader(args[0]))
             {
                 code = reader.ReadToEnd();
