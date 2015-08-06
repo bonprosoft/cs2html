@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp.Extensions;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSCodeSyntaxHighlighter
+namespace cs2html
 {
-    internal class CSSyntaxWalker : SyntaxWalker
+    internal class SampleSyntaxWalker : SyntaxWalker
     {
         private SemanticModel semanticModel;
         private HtmlBuilder builder;
@@ -18,25 +19,25 @@ namespace CSCodeSyntaxHighlighter
         /// <summary>
         /// コードの解析を行い、builderに記録します
         /// </summary>
-        public void Analyze(string code,HtmlBuilder builder)
+        public void Analyze(string code, HtmlBuilder builder)
         {
             this.builder = builder;
             // コードを解析して構文木を作成
             var tree = CSharpSyntaxTree.ParseText(code);
             // 解析結果から診断を取得
-            foreach(var item in tree.GetDiagnostics())
+            foreach (var item in tree.GetDiagnostics())
             {
                 this.builder.AppendSyntaxDiagnostic(item);
             }
 
             // コンパイル環境を用意
             var compilation = CSharpCompilation.Create("sample",
-                syntaxTrees : new[] { tree },
-                references: new[] { new MetadataFileReference(typeof(Object).Assembly.Location) });
+                syntaxTrees: new[] { tree },
+                references: new[] { MetadataReference.CreateFromFile(typeof(object).Assembly.Location) });
             // セマンティックモデル(構文木を走査してNameSyntaxなどの意味を解釈したもの)を取得
             semanticModel = compilation.GetSemanticModel(tree);
             // 解析結果から診断を取得
-            foreach(var item in compilation.GetDiagnostics())
+            foreach (var item in compilation.GetDiagnostics())
             {
                 this.builder.AppendSemanticDiagnostic(item);
             }
@@ -70,9 +71,10 @@ namespace CSCodeSyntaxHighlighter
                 this.builder.Write(TokenKind.Keyword, token.ValueText);
                 isProcessed = true;
 
-            } else
+            }
+            else
             {
-                switch (token.CSharpKind())
+                switch (token.Kind())
                 {
                     // 各種リテラルであるか
                     case SyntaxKind.StringLiteralToken:
@@ -114,7 +116,8 @@ namespace CSCodeSyntaxHighlighter
                                         break;
                                 }
                             }
-                        } else if (token.Parent is TypeDeclarationSyntax)
+                        }
+                        else if (token.Parent is TypeDeclarationSyntax)
                         {
                             // 宣言時のStatementがヒットした場合
                             var name = (TypeDeclarationSyntax)token.Parent;
@@ -142,7 +145,7 @@ namespace CSCodeSyntaxHighlighter
 
             if (token.HasTrailingTrivia)
             {
-                foreach(var trivia in token.TrailingTrivia)
+                foreach (var trivia in token.TrailingTrivia)
                 {
                     VisitTrivia(trivia);
                 }
@@ -152,7 +155,7 @@ namespace CSCodeSyntaxHighlighter
 
         protected override void VisitTrivia(SyntaxTrivia trivia)
         {
-            switch (trivia.CSharpKind())
+            switch (trivia.Kind())
             {
                 // コメント
                 case SyntaxKind.MultiLineCommentTrivia:
@@ -191,6 +194,4 @@ namespace CSCodeSyntaxHighlighter
         }
 
     }
-
-
 }

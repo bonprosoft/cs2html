@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using System.IO;
 
-namespace CSCodeSyntaxHighlighter
+namespace cs2html
 {
     class Program
     {
@@ -34,7 +34,7 @@ namespace CSCodeSyntaxHighlighter
             }
 
             var builder = new HtmlBuilder(args[0]);
-            var walker = new CSSyntaxWalker();
+            var walker = new SampleSyntaxWalker();
             walker.Analyze(code, builder);
 
             using (var writer = new StreamWriter(args[1]))

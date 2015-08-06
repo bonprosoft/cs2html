@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Net;
-
-namespace CSCodeSyntaxHighlighter
+namespace cs2html
 {
     class HtmlBuilder
     {
@@ -21,7 +18,7 @@ namespace CSCodeSyntaxHighlighter
 
         private string targetFilePath = "";
 
-#region "Html Templates"
+        #region "Html Templates"
         private const string DIAGNOSTIC_ITEM_TEMPLATE = @" <li class='{0}'>#{2} <strong>{0}</strong> {1} @ {3}</li>";
 
         private const string TEMPLATE = @"
@@ -63,7 +60,7 @@ namespace CSCodeSyntaxHighlighter
 
         <footer>
             <div id='footeritem-container'>
-                <p id='copyright' class='wrapper'>&copy; Copyrights 2014 <a href='http://bonprosoft.com/'>Yuki Igarashi</a> All Rights Reserved.</p>
+                <p id='copyright' class='wrapper'>&copy; Copyrights 2015 <a href='http://bonprosoft.com/'>Yuki Igarashi</a> All Rights Reserved.</p>
             </div>
         </footer>
     </div>
@@ -271,7 +268,7 @@ namespace CSCodeSyntaxHighlighter
         }
 ";
 
-#endregion
+        #endregion
 
         public HtmlBuilder(string target)
         {
@@ -284,7 +281,7 @@ namespace CSCodeSyntaxHighlighter
         /// <summary>
         /// 各種トークンを受け取りStringBuilderに格納します
         /// </summary>
-        public void Write(TokenKind kind,string value)
+        public void Write(TokenKind kind, string value)
         {
             switch (kind)
             {
@@ -330,7 +327,7 @@ namespace CSCodeSyntaxHighlighter
         /// </summary>
         private string Escape(string value)
         {
-            return WebUtility.HtmlEncode(value).Replace("\n","<br>").Replace(" ", "&nbsp;").Replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
+            return WebUtility.HtmlEncode(value).Replace("\n", "<br>").Replace(" ", "&nbsp;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
         }
 
         /// <summary>
@@ -338,7 +335,7 @@ namespace CSCodeSyntaxHighlighter
         /// </summary>
         public string BuildHtml()
         {
-            return String.Format(TEMPLATE, CSS,this.targetFilePath,
+            return String.Format(TEMPLATE, CSS, this.targetFilePath,
                 syntaxDiagnosticsBuilder.ToString(),
                 semanticDiagnosticsBuilder.ToString(),
                 builder.ToString());

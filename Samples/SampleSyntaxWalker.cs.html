@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <title>cs2html\SampleSyntaxWalker.cs - cs2html</title>
+    <style>
+         
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            text-decoration: none;
+            -webkit-box-sizing: border-box !important;
+            -moz-box-sizing: border-box !important;
+            -ms-box-sizing: border-box !important;
+            box-sizing: border-box !important;
+        }
+
+        html {
+            background: #ececec;
+        }
+
+        html, body {
+            margin: 0px;
+            padding: 0;
+        }
+
+        body {
+            background: #CACACA;
+            color: #333;
+            font-size: 14px;
+            font-family: Meiryo, 'メイリオ', ArialMT, Hiragino Kaku Gothic Pro, 'ヒラギノ角ゴ Pro W3', Osaka, Verdana, 'ＭＳ Ｐゴシック';
+            line-height: 160%;
+            /*margin-top: 170px;*/
+            min-width: 300px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: normal;
+        }
+
+        h1 {
+            margin-bottom: 2px;
+            font-size: 240%;
+            line-height: 1.2em;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        h2 {
+           	font-size: 1.5em;
+            border-style: none none solid solid;
+            border-width: 0 0 0.1em 0.5em;
+            border-color: purple;
+            padding: 0.2em 0em 0.2em 0.4em;
+            margin-bottom: 1em;
+        }
+
+        header {
+            background-color: purple;
+            overflow: hidden;
+            background: #2f4f4f;
+            border-bottom: 4px solid #727272;
+            margin: 0;
+            padding: 10px;
+        }
+
+            header * {
+                color: white;
+            }
+
+            header h1 {
+                color: white;
+                font-weight: bold;
+            }
+
+        #maincontents {
+            /*background: white;*/
+            margin: 1.4em 0 1.4em 0;
+            clear: both;
+            overflow: hidden;
+        }
+
+        #main {
+            margin: 10px 10px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+            padding: 1.3em;
+            overflow: hidden;
+        }
+
+        #info {
+            border-bottom: solid #CCC 1px;
+            margin-bottom: 10px;
+        }
+
+            #info p #langName {
+                color: rgb(224,0,0);
+                display: block;
+                font-size: 1em;
+            }
+
+        #syntax-result {
+            border: 1px solid red;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        #syntax-result h3 {
+            background-color: red;
+            padding: 0.5em;
+            color: white;
+        }
+
+        #syntax-result ul {
+            padding: 1em;
+            margin: 0 0 0 1em;
+            background-color: white;
+            word-break: break-all;
+        }
+
+        #semantic-result {
+            border: 1px solid orange;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        #semantic-result h3 {
+            background-color: orange;
+            padding: 0.5em;
+            color: white;
+        }
+
+        #semantic-result ul {
+               padding: 1em;
+            margin: 0 0 0 1em;
+            background-color: white;
+            word-break: break-all;
+        }
+
+        footer {
+            clear: both;
+            overflow: hidden;
+            background: #f5f5f5;
+            /*background-attachment: fixed;*/
+            background: #ECECEC;
+            border-top: 4px solid #3E687F;
+        }
+
+        #footeritem-container {
+            margin: 0 auto 10px auto;
+            padding: 4px;
+        }
+
+        .footeritem {
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top;
+            padding: 5px 10px 5px 10px;
+        }
+
+        #code {
+            -ms-word-break: break-all;
+            word-break: break-all;
+        }
+
+        #fileName {
+            font-size: 1.5em;
+            line-height: 1.2em;
+        }
+
+        /* Syntax Highlighting */
+        .Keyword {
+            color: #0000ff;
+        }
+
+        .Identifier {
+            color: #2b91af;
+        }
+
+        .StringLiteral {
+            color: #a31515;
+        }
+
+        .CharacterLiteral {
+            color: #d202fe;
+        }
+
+        .Comment {
+            color: #008000;
+        }
+
+        .NumberLiteral {
+            color: #B5CEA8;
+        }
+
+        .DisabledText {
+            color: #ABABAB;
+        }
+
+        .Region {
+            color: #e0e0e0;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSCodeSyntaxHighlighter</h1>
+        <p>Simple C# Syntax Highlighter Powered by <a href='http://roslyn.codeplex.com/' target='_blank'>Roslyn </a></p>
+    </header>
+    <div id='maincontents'>
+        <div id='main'>
+            <div id='info'>
+                <p><span id='langName'> C#</span></p>
+                <p>File Name: <span id='fileName'>cs2html\SampleSyntaxWalker.cs</span></p>
+            </div>
+            <div id='syntax-result'>
+                <h3>Syntax Diagnostics</h3>
+                <ul>
+                    
+                </ul>
+            </div>
+            <div id='semantic-result'>
+                <h3>Semantic Diagnostics</h3>
+                <ul>
+                     <li class='Error'>#CS0234 <strong>Error</strong> The type or namespace name 'CodeAnalysis' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?) @ [16..28)</li>
+ <li class='Error'>#CS0234 <strong>Error</strong> The type or namespace name 'CodeAnalysis' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?) @ [47..59)</li>
+ <li class='Error'>#CS0234 <strong>Error</strong> The type or namespace name 'CodeAnalysis' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?) @ [85..97)</li>
+ <li class='Error'>#CS0234 <strong>Error</strong> The type or namespace name 'CodeAnalysis' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?) @ [130..142)</li>
+ <li class='Error'>#CS0234 <strong>Error</strong> The type or namespace name 'Linq' does not exist in the namespace 'System' (are you missing an assembly reference?) @ [228..232)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'SyntaxWalker' could not be found (are you missing a using directive or an assembly reference?) @ [350..362)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'HtmlBuilder' could not be found (are you missing a using directive or an assembly reference?) @ [582..593)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'SyntaxToken' could not be found (are you missing a using directive or an assembly reference?) @ [1798..1809)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'SyntaxTrivia' could not be found (are you missing a using directive or an assembly reference?) @ [6097..6109)</li>
+ <li class='Error'>#CS0115 <strong>Error</strong> 'SampleSyntaxWalker.VisitToken(SyntaxToken)': no suitable method found to override @ [1787..1797)</li>
+ <li class='Error'>#CS0115 <strong>Error</strong> 'SampleSyntaxWalker.VisitTrivia(SyntaxTrivia)': no suitable method found to override @ [6085..6096)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'SemanticModel' could not be found (are you missing a using directive or an assembly reference?) @ [387..400)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'HtmlBuilder' could not be found (are you missing a using directive or an assembly reference?) @ [433..444)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'CSharpSyntaxTree' does not exist in the current context @ [706..722)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'MetadataReference' does not exist in the current context @ [1093..1110)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'CSharpCompilation' does not exist in the current context @ [975..992)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [2196..2205)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [2439..2449)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [2514..2523)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [2672..2682)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [2750..2759)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [2899..2909)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [2975..2984)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [3121..3131)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'SimpleNameSyntax' could not be found (are you missing a using directive or an assembly reference?) @ [3244..3260)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'SimpleNameSyntax' could not be found (are you missing a using directive or an assembly reference?) @ [3330..3346)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [3557..3567)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [3746..3756)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [3888..3897)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [4079..4089)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [4143..4153)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [4207..4217)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [4267..4277)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [4327..4337)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [4462..4471)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'TypeDeclarationSyntax' could not be found (are you missing a using directive or an assembly reference?) @ [4748..4769)</li>
+ <li class='Error'>#CS0246 <strong>Error</strong> The type or namespace name 'TypeDeclarationSyntax' could not be found (are you missing a using directive or an assembly reference?) @ [4893..4914)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [5070..5080)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SymbolKind' does not exist in the current context @ [5252..5262)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [5334..5343)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [5772..5781)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [6227..6237)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [6284..6294)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [6360..6369)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [6486..6496)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [6557..6566)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [6686..6696)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [6756..6766)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [6827..6837)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [6914..6923)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [7035..7045)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [7091..7101)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [7168..7177)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [7283..7293)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [7352..7361)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'SyntaxKind' does not exist in the current context @ [7471..7481)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [7539..7548)</li>
+ <li class='Error'>#CS0103 <strong>Error</strong> The name 'TokenKind' does not exist in the current context @ [7697..7706)</li>
+ <li class='Error'>#CS5001 <strong>Error</strong> Program does not contain a static 'Main' method suitable for an entry point @ [0..0)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [0..29)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [255..284)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [165..178)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [215..233)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [31..67)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [114..161)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [69..112)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [180..213)</li>
+ <li class='Hidden'>#CS8019 <strong>Hidden</strong> Unnecessary using directive. @ [235..253)</li>
+
+                </ul>
+            </div>
+            <h2>コード</h2>
+            <p id='code'><span class="Keyword">using</span>&nbsp;Microsoft.CodeAnalysis;<br><span class="Keyword">using</span>&nbsp;Microsoft.CodeAnalysis.CSharp;<br><span class="Keyword">using</span>&nbsp;Microsoft.CodeAnalysis.CSharp.Syntax;<br><span class="Keyword">using</span>&nbsp;Microsoft.CodeAnalysis.CSharp.Extensions;<br><br><span class="Keyword">using</span>&nbsp;System;<br><span class="Keyword">using</span>&nbsp;System.Collections.Generic;<br><span class="Keyword">using</span>&nbsp;System.Linq;<br><span class="Keyword">using</span>&nbsp;System.Text;<br><span class="Keyword">using</span>&nbsp;System.Threading.Tasks;<br><br><span class="Keyword">namespace</span>&nbsp;cs2html<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">internal</span>&nbsp;<span class="Keyword">class</span>&nbsp;<span class="Identifier">SampleSyntaxWalker</span>&nbsp;:&nbsp;SyntaxWalker<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">private</span>&nbsp;SemanticModel&nbsp;semanticModel;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">private</span>&nbsp;HtmlBuilder&nbsp;builder;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">///&nbsp;&lt;summary&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;コードの解析を行い、builderに記録します<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;///&nbsp;&lt;/summary&gt;<br></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">public</span>&nbsp;<span class="Keyword">void</span>&nbsp;Analyze(<span class="Keyword">string</span>&nbsp;code,&nbsp;HtmlBuilder&nbsp;builder)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder&nbsp;=&nbsp;builder;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;コードを解析して構文木を作成</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;tree&nbsp;=&nbsp;CSharpSyntaxTree.ParseText(code);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;解析結果から診断を取得</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">foreach</span>&nbsp;(var&nbsp;item&nbsp;<span class="Keyword">in</span>&nbsp;tree.GetDiagnostics())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.AppendSyntaxDiagnostic(item);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;コンパイル環境を用意</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;compilation&nbsp;=&nbsp;CSharpCompilation.Create(<span class="StringLiteral">&quot;sample&quot;</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;syntaxTrees:&nbsp;<span class="Keyword">new</span>[]&nbsp;{&nbsp;tree&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;references:&nbsp;<span class="Keyword">new</span>[]&nbsp;{&nbsp;MetadataReference.CreateFromFile(<span class="Keyword">typeof</span>(<span class="Keyword">object</span>).Assembly.Location)&nbsp;});<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;セマンティックモデル(構文木を走査してNameSyntaxなどの意味を解釈したもの)を取得</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semanticModel&nbsp;=&nbsp;compilation.GetSemanticModel(tree);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;解析結果から診断を取得</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">foreach</span>&nbsp;(var&nbsp;item&nbsp;<span class="Keyword">in</span>&nbsp;compilation.GetDiagnostics())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.AppendSemanticDiagnostic(item);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;各トークンを見ていく</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">foreach</span>&nbsp;(var&nbsp;token&nbsp;<span class="Keyword">in</span>&nbsp;tree.GetRoot().DescendantTokens())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.VisitToken(token);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;初期化</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder&nbsp;=&nbsp;<span class="Keyword">null</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.semanticModel&nbsp;=&nbsp;<span class="Keyword">null</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">protected</span>&nbsp;<span class="Keyword">override</span>&nbsp;<span class="Keyword">void</span>&nbsp;VisitToken(SyntaxToken&nbsp;token)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">if</span>&nbsp;(token.HasLeadingTrivia)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">foreach</span>&nbsp;(var&nbsp;trivia&nbsp;<span class="Keyword">in</span>&nbsp;token.LeadingTrivia)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VisitTrivia(trivia);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">bool</span>&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">false</span>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;キーワードであるか</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">if</span>&nbsp;(token.IsKeyword())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.Keyword,&nbsp;token.ValueText);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">true</span>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">else</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">switch</span>&nbsp;(token.Kind())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;各種リテラルであるか</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.StringLiteralToken:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.StringLiteral,&nbsp;<span class="CharacterLiteral">&quot;</span>&nbsp;+&nbsp;token.ValueText&nbsp;+&nbsp;<span class="CharacterLiteral">&quot;</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">true</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.CharacterLiteralToken:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.CharacterLiteral,&nbsp;token.ValueText);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">true</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.NumericLiteralToken:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.NumberLiteral,&nbsp;token.ValueText);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">true</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.IdentifierToken:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;何かの名前(変数等)を参照しようとした場合</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">if</span>&nbsp;(token.Parent&nbsp;<span class="Keyword">is</span>&nbsp;SimpleNameSyntax)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;name&nbsp;=&nbsp;(SimpleNameSyntax)token.Parent;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;参照先に関する情報を取得</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;info&nbsp;=&nbsp;semanticModel.GetSymbolInfo(name);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">if</span>&nbsp;(info.Symbol&nbsp;!=&nbsp;<span class="Keyword">null</span>&nbsp;&amp;&amp;&nbsp;info.Symbol.Kind&nbsp;!=&nbsp;SymbolKind.ErrorType)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">switch</span>&nbsp;(info.Symbol.Kind)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SymbolKind.NamedType:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;クラスや列挙などの場合は色づけ</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.Identifier,&nbsp;token.ValueText);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">true</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SymbolKind.Namespace:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SymbolKind.Parameter:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SymbolKind.Local:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SymbolKind.Field:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SymbolKind.Property:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;それ以外は通常の色</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.None,&nbsp;token.ValueText);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">true</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">else</span>&nbsp;<span class="Keyword">if</span>&nbsp;(token.Parent&nbsp;<span class="Keyword">is</span>&nbsp;TypeDeclarationSyntax)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;宣言時のStatementがヒットした場合</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;name&nbsp;=&nbsp;(TypeDeclarationSyntax)token.Parent;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;info&nbsp;=&nbsp;semanticModel.GetDeclaredSymbol(name);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">if</span>&nbsp;(info&nbsp;!=&nbsp;<span class="Keyword">null</span>&nbsp;&amp;&amp;&nbsp;info.Kind&nbsp;!=&nbsp;SymbolKind.ErrorType)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">switch</span>&nbsp;(info.Kind)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SymbolKind.NamedType:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.Identifier,&nbsp;token.ValueText);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isProcessed&nbsp;=&nbsp;<span class="Keyword">true</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;それ以外の項目&nbsp;(今のところ、特殊例はすべて色づけしない)</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">if</span>&nbsp;(!isProcessed)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.None,&nbsp;token.ValueText);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">if</span>&nbsp;(token.HasTrailingTrivia)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">foreach</span>&nbsp;(var&nbsp;trivia&nbsp;<span class="Keyword">in</span>&nbsp;token.TrailingTrivia)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VisitTrivia(trivia);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">protected</span>&nbsp;<span class="Keyword">override</span>&nbsp;<span class="Keyword">void</span>&nbsp;VisitTrivia(SyntaxTrivia&nbsp;trivia)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">switch</span>&nbsp;(trivia.Kind())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;コメント</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.MultiLineCommentTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.SingleLineCommentTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.Comment,&nbsp;trivia.ToFullString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;無効になっているテキスト</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.DisabledTextTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.DisabledText,&nbsp;trivia.ToFullString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;ドキュメントコメント</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.MultiLineDocumentationCommentTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.SingleLineDocumentationCommentTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.DocumentationCommentExteriorTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.Comment,&nbsp;trivia.ToFullString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;#region</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.RegionDirectiveTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.EndRegionDirectiveTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.Region,&nbsp;trivia.ToFullString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;空白</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.WhitespaceTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.WhiteSpace,&nbsp;trivia.ToFullString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;改行</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">case</span>&nbsp;SyntaxKind.EndOfLineTrivia:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.EOL,&nbsp;trivia.ToFullString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Comment">//&nbsp;それ以外</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">default</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">this</span>.builder.Write(TokenKind.None,&nbsp;trivia.ToFullString());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="Keyword">base</span>.VisitTrivia(trivia);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></p>
+        </div>
+
+        <footer>
+            <div id='footeritem-container'>
+                <p id='copyright' class='wrapper'>&copy; Copyrights 2015 <a href='http://bonprosoft.com/'>Yuki Igarashi</a> All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
+
